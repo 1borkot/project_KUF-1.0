@@ -1,9 +1,5 @@
-from hmac import new
-from operator import ne
-from fastapi import FastAPI, Body, Response, status, HTTPException
+from fastapi import FastAPI, Response, status, HTTPException
 from pydantic import BaseModel
-from typing import Optional
-from random import randrange 
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import time
@@ -32,25 +28,6 @@ while True:
         print("Database connection failed")
         print(f"Error: {error}")
         time.sleep(2)
-
-
-my_posts = [
-    {"title": "First Post", "content": "This is the content of the first post", "id": 1}, 
-    {"title": "Second Post", "content": "This is the content of the second post", "id": 2}
-]
-
-
-def find_post(id: int):
-    for p in my_posts:
-        if p['id'] == id:
-            return p
-
-
-def find_post_index(id: int):
-    for i, p in enumerate(my_posts):
-        if p['id'] == id:
-            return i
-        
 
 
 @app.get("/")
